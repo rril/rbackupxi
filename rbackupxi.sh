@@ -67,8 +67,8 @@ do
 	else
 		HOST_TARGET_BK="$backuppoint/$(ssh "$hostip" grep displayName $DATASTORE_HOST/$VMX_HOST |awk '{print substr($NF,2,length($NF)-2)}')"
 		echo copy VMX file to $HOST_TARGET_BK
-		ssh "$hostip" "rm -r \"$HOST_TARGET_BK-1\" && mv \"$HOST_TARGET_BK\" \"$HOST_TARGET_BK-1\""
-		ssh "$hostip" "mkdir \"$HOST_TARGET_BK\" && cp \"$DATASTORE_HOST/$VMX_HOST\" \"$HOST_TARGET_BK/\""
+		ssh "$hostip" "rm -r \"$HOST_TARGET_BK-1\" ; mv \"$HOST_TARGET_BK\" \"$HOST_TARGET_BK-1\""
+		ssh "$hostip" "mkdir \"$HOST_TARGET_BK\" ; cp \"$DATASTORE_HOST/$VMX_HOST\" \"$HOST_TARGET_BK/\""
 
 		echo Take snapshot
 		ssh "$hostip" "vim-cmd vmsvc/snapshot.create $HID rbackup \"create by rbackup script for make clone to backup\" 0 0"
